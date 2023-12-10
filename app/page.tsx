@@ -27,11 +27,9 @@ export default function Home() {
           </div>
         </div>
       </div>
-      
+
       {/* CONTENT */}
-      <div className="">
-        <MainGallery/>
-      </div>
+      <MainGallery />
     </div>
   );
 }

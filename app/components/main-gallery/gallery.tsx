@@ -11,10 +11,11 @@ const MainGallery = () => {
       <Carousel
         additionalTransfrom={0}
         arrows={false}
-        autoPlaySpeed={3000}
+        autoPlay
         centerMode={false}
         className=""
-        containerClass="container-with-dots"
+        containerClass=""
+        customTransition="all 1s linear"
         dotListClass=""
         draggable
         focusOnSelect={false}
@@ -52,8 +53,8 @@ const MainGallery = () => {
             partialVisibilityGutter: 30,
           },
         }}
-        rewind={false}
-        rewindWithAnimation={false}
+        rewind={true}
+        rewindWithAnimation={true}
         rtl={false}
         shouldResetAutoplay
         showDots={false}
@@ -63,60 +64,65 @@ const MainGallery = () => {
       >
         <div className={styles.gallery}>
           <h1
-            className={`w-full fixed font-extrabold italic text-4xl text-[#a0b5bc] text-center ${styles.imageTitle1}`}
+            className={`w-full fixed font-extrabold italic text-4xl md:text-2xl text-[#a0b5bc] text-center ${styles.imageTitle1}`}
           >
             WOMEN'S
           </h1>
           <div
-            className={`flex w-7/12 h-3/6 bg-[url('/images/women.jpg')] ${styles.images}`}
+            className={`flex w-7/12 md:w-6/12 h-3/6 md:h-4/6 bg-[url('/images/women.jpg')] ${styles.images}`}
           ></div>
           <h1
-            className={`w-full fixed font-extrabold italic text-5xl text-[#113946] text-center tracking-[.5em] ${styles.imageTitle2} `}
+            className={`w-full fixed font-extrabold italic text-5xl md:text-3xl text-[#113946] text-center tracking-[.5em] ${styles.imageTitle2} `}
           >
             WEAR
           </h1>
         </div>
         <div className={styles.gallery}>
           <h1
-            className={`w-full fixed font-extrabold italic text-4xl text-[#a0b5bc] text-center ${styles.imageTitle1} `}
+            className={`w-full fixed font-extrabold italic text-4xl md:text-2xl text-[#a0b5bc] text-center ${styles.imageTitle1} `}
           >
             MEN'S
           </h1>
           <div
-            className={`flex w-7/12 h-3/6 bg-[url('/images/men.jpg')]  ${styles.images}`}
+            className={`flex w-7/12 md:w-6/12 h-3/6 md:h-4/6 bg-[url('/images/men.jpg')]  ${styles.images}`}
           ></div>
           <h1
-            className={`w-full fixed font-extrabold italic text-5xl text-[#113946] text-center tracking-[.5em] ${styles.imageTitle2} `}
+            className={`w-full fixed font-extrabold italic text-5xl md:text-3xl text-[#113946] text-center tracking-[.5em] ${styles.imageTitle2} `}
           >
             WEAR
           </h1>
         </div>
         <div className={styles.gallery}>
           <h1
-            className={`w-full fixed font-extrabold italic text-4xl text-[#a0b5bc] text-center ${styles.imageTitle1} `}
+            className={`w-full fixed font-extrabold italic text-4xl md:text-2xl text-[#a0b5bc] text-center ${styles.imageTitle1} `}
           >
             KID'S
           </h1>
-          <div className={`flex w-7/12 h-3/6 bg-[url('/images/kids.jpg')]  ${styles.images}`}></div>
+          <div
+            className={`flex w-7/12 md:w-6/12 h-3/6 md:h-4/6 bg-[url('/images/kids.jpg')]  ${styles.images}`}
+          ></div>
           <h1
-            className={`w-full fixed font-extrabold italic text-5xl text-[#113946] text-center tracking-[.5em] ${styles.imageTitle2} `}
+            className={`w-full fixed font-extrabold italic text-5xl md:text-3xl text-[#113946] text-center tracking-[.5em] ${styles.imageTitle2} `}
           >
             WEAR
           </h1>
         </div>
         <div className={styles.gallery}>
           <h1
-            className={`w-full fixed font-extrabold italic text-4xl text-[#a0b5bc] text-center ${styles.imageTitle1} `}
+            className={`w-full fixed font-extrabold italic text-4xl md:text-2xl text-[#a0b5bc] text-center ${styles.imageTitle1} `}
           >
             MEN'S
           </h1>
-          <div className={`flex w-7/12 h-3/6 bg-[url('/images/men_shoes.jpg')] ${styles.images}`}></div>
+          <div
+            className={`flex w-7/12 md:w-6/12 h-3/6 md:h-4/6 bg-[url('/images/men_shoes.jpg')] ${styles.images}`}
+          ></div>
           <h1
-            className={`w-full fixed font-extrabold italic text-4xl text-[#113946] text-center tracking-[.5em] ${styles.imageTitle2} `}
+            className={`w-full fixed font-extrabold italic text-4xl md:text-2xl text-[#113946] text-center tracking-[.5em] ${styles.imageTitle2} `}
           >
             SHOES
           </h1>
         </div>
+       
       </Carousel>
     </div>
   );
