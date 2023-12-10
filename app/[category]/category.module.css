@@ -4,5 +4,9 @@
 
 .dropdownIcon{
   right: 40%;
-    position: fixed;
+    /* position: fixed; */
+}
+
+.reviewText{
+  font-size: 8px;
 }
