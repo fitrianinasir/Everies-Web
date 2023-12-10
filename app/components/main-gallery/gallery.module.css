@@ -1,0 +1,25 @@
+.gallery{
+  position: relative;
+  top: 20%;
+  left: 10%;
+  width: 80% !important;
+  height: 75vh !important;
+  background-color: white;
+}
+
+.images{
+  position: fixed;
+  top: 35%;
+  left: 21%;
+  background-size: cover;
+}
+
+.imageTitle1{
+  top:28%;
+  left: 0%;
+}
+
+.imageTitle2{
+  top:88%;
+  left: 2%;
+}

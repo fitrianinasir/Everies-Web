@@ -1,6 +1,5 @@
 import Image from "next/image";
 import styles from "./style.module.css";
-import MainGallery from "./components/main-gallery/gallery";
 
 export default function Home() {
   return (
@@ -27,10 +26,29 @@ export default function Home() {
           </div>
         </div>
       </div>
-      
       {/* CONTENT */}
-      <div className="">
-        <MainGallery/>
+      <div className="flex text-white text-lg font-bold italic items-center justify-center w-full md">
+        <div className="absolute bottom-0 w-5/12 h-4/6 bg-[#FFF2D8] md:hidden"></div>
+        <div className={`absolute right-0 ${styles.mainContent1}`}>
+          <h1 className="flex h-full items-center justify-center">
+            WOMAN'S WEAR
+          </h1>
+        </div>
+        <div className={`absolute left-0 top-60 ${styles.mainContent2}`}>
+          <h1 className="flex h-full items-center justify-center">
+            MAN'S WEAR
+          </h1>
+        </div>
+        <div className={`absolute right-0 ${styles.mainContent3}`}>
+          <h1 className="flex h-full items-center justify-center">
+            KID'S WEAR
+          </h1>
+        </div>
+        <div className={`absolute left-0 ${styles.mainContent4}`}>
+          <h1 className="flex h-full items-center justify-center">
+            MAN'S SHOES
+          </h1>
+        </div>
       </div>
     </div>
   );
