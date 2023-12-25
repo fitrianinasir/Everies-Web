@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { useParams } from "next/navigation";
 import Image from "next/image";
 import styles from "./category.module.css";
+import Link from "next/link";
 
 const CategoryPage = () => {
   const { category } = useParams();
@@ -173,7 +174,7 @@ const CategoryPage = () => {
             </div>
           </div>
         </div>
-
+        <Link href={`${category}/woman-code0001`}>
         <div>
           <div className="w-full h-60 bg-[url('/images/sample2.jpg')] bg-cover"></div>
           <div className="w-full h-16 pt-2">
@@ -216,6 +217,7 @@ const CategoryPage = () => {
             </div>
           </div>
         </div>
+        </Link>
         <div>
           <div className="w-full h-60 bg-[url('/images/sample3.jpg')] bg-cover"></div>
           <div className="w-full h-16 pt-2">
