@@ -5,7 +5,7 @@ const CheckoutPage = () => {
   const [isSelectAll, setSelectAll] = useState(false);
   const [isCheckout, setCheckout] = useState(false);
 
-  const [isDropDownOpen, setDropDownOpen] = useState(false);
+  const [isDropDownOpen, setDropDownOpen] = useState(true);
 
   const enableDropDown = () => {
     setDropDownOpen(!isDropDownOpen);
@@ -19,6 +19,13 @@ const CheckoutPage = () => {
     setCheckout(!isCheckout);
   };
   return (
+    <div>
+      <div
+        className={`fixed w-screen h-full ${
+          isDropDownOpen ? "opacity-70 bg-black" : ""
+        }`}
+        onClick={enableDropDown}
+      ></div>
       <div className="w-screen h-full">
         {/* NAVBAR START */}
         <div className="w-full h-28 flex text-[12px] items-end pl-5">
@@ -45,7 +52,7 @@ const CheckoutPage = () => {
         </div>
         {/* NAVBAR LEV.2 END */}
         {/* INFO MODAL START */}
-        <div className="relative w-full h-32 bg-gradient-to-b from-[#646f99] to-white pt-6 px-6 ">
+        <div className="w-full h-32 bg-gradient-to-b from-[#646f99] to-white pt-6 px-6 ">
           <div className="flex w-full h-full bg-white rounded-lg shadow-xl p-5 items-center">
             <img
               src="icons/icons8-delivery.gif"
@@ -60,7 +67,7 @@ const CheckoutPage = () => {
         </div>
         {/* INFO MODAL END */}
         {/* PRODUCTS LIST START*/}
-        <div className="grid grid-cols-1 gap-1 w-full">
+        <div className="w-full grid grid-cols-1 gap-1 mt-2">
           <div className="flex h-40 p-5">
             <input
               checked={isCheckout}
@@ -440,6 +447,8 @@ const CheckoutPage = () => {
             </div>
           </div>
         </div>
+        {/* PRODUCTS LIST END*/}
+        {/* FOOTER START */}
         <div className="w-full mt-5">
           <div className="flex text-center justify-center w-full h-12 bg-[#ADC4CE] p-2">
             <img
@@ -478,7 +487,89 @@ const CheckoutPage = () => {
             </button>
           </div>
         </div>
+        {/* FOOTER END */}
       </div>
+
+      {isDropDownOpen ? (
+        <div className="fixed w-screen h-3/6 bottom-0 p-5 transition-[height] ease-in duration-300 bg-white">
+          <div className="flex">
+            <div className="w-28 h-24 bg-[url('/images/sample1.jpg')] bg-cover mr-3"></div>
+            <div className="w-full flex flex-col justify-between">
+              <h1 className="text-sm text-[#BCA37F] font-bold italic">
+                Arabella Shirt - White
+              </h1>
+              <p className="text-sm">Rp. 320.000</p>
+              <p className="text-[10px] text-gray-500">STOCK LEFT: 500</p>
+            </div>
+          </div>
+          <hr className="h-px my-3 bg-gray-200 border-0" />
+          <p className="text-sm">Category</p>
+          <div className="my-3 grid grid-cols-4 gap-2">
+            <div className="px-2 py-1 bg-gray-200 text-[10px] text-center">
+              Stripped White
+            </div>
+            <div className="px-2 py-1 bg-gray-200 text-[10px] text-center">
+              Stripped Red
+            </div>
+            <div className="px-2 py-1 bg-gray-200 text-[10px] text-center">
+              Stripped Black
+            </div>
+            <div className="px-2 py-1 bg-gray-200 text-[10px] text-center">
+              Stripped Blue
+            </div>
+            <div className="px-2 py-1 bg-gray-200 text-[10px] text-center">
+              Stripped Brown
+            </div>
+          </div>
+          <p className="text-sm">Size</p>
+          <div className="my-3 grid grid-cols-4 gap-2">
+            <div className="px-2 py-1 bg-gray-200 text-[10px] text-center">
+              S
+            </div>
+            <div className="px-2 py-1 bg-gray-200 text-[10px] text-center">
+              M
+            </div>
+            <div className="px-2 py-1 bg-gray-200 text-[10px] text-center">
+              L
+            </div>
+            <div className="px-2 py-1 bg-gray-200 text-[10px] text-center">
+              XL
+            </div>
+            <div className="px-2 py-1 bg-gray-200 text-[10px] text-center">
+              2XL
+            </div>
+          </div>
+          <div className="flex justify-between mt-5">
+            <p className="text-sm">Count</p>
+            <span className="mt-auto">
+              <button
+                type="button"
+                className="w-6 h-5 bg-[#F0ECE5] mr-3 text-xs"
+              >
+                -
+              </button>
+              <span className="font-bold text-sm">1</span>
+              <button
+                type="button"
+                className="w-6 h-5 bg-[#F0ECE5] ml-3 text-xs"
+              >
+                +
+              </button>
+            </span>
+          </div>
+            <button
+              type="button"
+              className="w-full h-3 bg-[#113946] p-5 text-white text-sm rounded-md font-medium leading-[0px] tracking-widest mt-8"
+            >
+              CONFIRM
+            </button>
+        </div>
+      ) : (
+        <div className="hidden absolute w-screen h-0 bottom-0 transition-[height] ease-out duration-300 bg-red-300">
+          TEST
+        </div>
+      )}
+    </div>
   );
 };
 
