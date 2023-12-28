@@ -1,11 +1,16 @@
 "use client";
 import React, { useState } from "react";
+import DeleteAlert from "./delete-alert";
 
 const CheckoutPage = () => {
   const [isSelectAll, setSelectAll] = useState(false);
   const [isCheckout, setCheckout] = useState(false);
 
-  const [isDropDownOpen, setDropDownOpen] = useState(true);
+  const [isDropDownOpen, setDropDownOpen] = useState(false);
+
+  const [isDeleteOpen, setDeleteOpen] = useState(false);
+
+  const [isDeleteOK, setDeleteOK] = useState(false);
 
   const enableDropDown = () => {
     setDropDownOpen(!isDropDownOpen);
@@ -18,13 +23,31 @@ const CheckoutPage = () => {
   const enableCheckout = () => {
     setCheckout(!isCheckout);
   };
+
+  const openDelete = () => {
+    setDeleteOpen(!isDeleteOpen);
+  };
+
+  const handleDeleteOK = (val: boolean) => {
+    if (val) {
+      setDeleteOK(val);
+    }
+    setDeleteOpen(false);
+  };
+
   return (
     <div>
       <div
         className={`fixed w-screen h-full ${
-          isDropDownOpen ? "opacity-70 bg-black" : ""
+          isDropDownOpen ? "opacity-70 bg-black" : "hidden"
         }`}
         onClick={enableDropDown}
+      ></div>
+      <div
+        className={`fixed w-screen h-full ${
+          isDeleteOpen ? "opacity-70 bg-black" : "hidden"
+        }`}
+        onClick={openDelete}
       ></div>
       <div className="w-screen h-full">
         {/* NAVBAR START */}
@@ -113,7 +136,7 @@ const CheckoutPage = () => {
                 </span>
               </div>
             </div>
-            <div className="flex-auto w-5">
+            <div className="flex-auto w-5" onClick={openDelete}>
               <img
                 width="16"
                 height="16"
@@ -167,7 +190,7 @@ const CheckoutPage = () => {
                 </span>
               </div>
             </div>
-            <div className="flex-auto w-5">
+            <div className="flex-auto w-5" onClick={openDelete}>
               <img
                 width="16"
                 height="16"
@@ -221,223 +244,7 @@ const CheckoutPage = () => {
                 </span>
               </div>
             </div>
-            <div className="flex-auto w-5">
-              <img
-                width="16"
-                height="16"
-                src="https://img.icons8.com/pastel-glyph/64/trash.png"
-                alt="trash"
-              />
-            </div>
-          </div>
-          <div className="flex h-40 p-5">
-            <input
-              checked={isCheckout}
-              id="checked-checkbox"
-              type="checkbox"
-              className="flex-none mr-2 self-start"
-              onClick={enableCheckout}
-            />
-            <div className="w-24 h-32 bg-[url('/images/sample4.jpg')] bg-cover flex-auto mr-3"></div>
-            <div className="flex w-64 h-full">
-              <div className="w-full flex flex-col justify-between">
-                <h1 className="text-sm text-[#BCA37F] font-bold italic">
-                  Zea - One Set Outfit
-                </h1>
-                <div
-                  className="flex text-[#113946] bg-[#F0ECE5] italic font-medium text-xs rounded-md px-2 py-2.5 items-center w-52 h-6 mb-3"
-                  onClick={enableDropDown}
-                >
-                  <span>Category</span>
-                  <img
-                    width="12"
-                    height="12"
-                    src="https://img.icons8.com/ios-filled/50/000000/sort-down.png"
-                    alt="sort-up"
-                    className="ml-auto sticky"
-                  />
-                </div>
-                <p className="text-sm">Rp. 320.000</p>
-                <span className="mt-auto">
-                  <button
-                    type="button"
-                    className="w-6 h-5 bg-[#F0ECE5] mr-3 text-xs"
-                  >
-                    -
-                  </button>
-                  <span className="font-bold text-sm">1</span>
-                  <button
-                    type="button"
-                    className="w-6 h-5 bg-[#F0ECE5] ml-3 text-xs"
-                  >
-                    +
-                  </button>
-                </span>
-              </div>
-            </div>
-            <div className="flex-auto w-5">
-              <img
-                width="16"
-                height="16"
-                src="https://img.icons8.com/pastel-glyph/64/trash.png"
-                alt="trash"
-              />
-            </div>
-          </div>
-          <div className="flex h-40 p-5">
-            <input
-              checked={isCheckout}
-              id="checked-checkbox"
-              type="checkbox"
-              className="flex-none mr-2 self-start"
-              onClick={enableCheckout}
-            />
-            <div className="w-24 h-32 bg-[url('/images/sample4.jpg')] bg-cover flex-auto mr-3"></div>
-            <div className="flex w-64 h-full">
-              <div className="w-full flex flex-col justify-between">
-                <h1 className="text-sm text-[#BCA37F] font-bold italic">
-                  Zea - One Set Outfit
-                </h1>
-                <div
-                  className="flex text-[#113946] bg-[#F0ECE5] italic font-medium text-xs rounded-md px-2 py-2.5 items-center w-52 h-6 mb-3"
-                  onClick={enableDropDown}
-                >
-                  <span>Category</span>
-                  <img
-                    width="12"
-                    height="12"
-                    src="https://img.icons8.com/ios-filled/50/000000/sort-down.png"
-                    alt="sort-up"
-                    className="ml-auto sticky"
-                  />
-                </div>
-                <p className="text-sm">Rp. 320.000</p>
-                <span className="mt-auto">
-                  <button
-                    type="button"
-                    className="w-6 h-5 bg-[#F0ECE5] mr-3 text-xs"
-                  >
-                    -
-                  </button>
-                  <span className="font-bold text-sm">1</span>
-                  <button
-                    type="button"
-                    className="w-6 h-5 bg-[#F0ECE5] ml-3 text-xs"
-                  >
-                    +
-                  </button>
-                </span>
-              </div>
-            </div>
-            <div className="flex-auto w-5">
-              <img
-                width="16"
-                height="16"
-                src="https://img.icons8.com/pastel-glyph/64/trash.png"
-                alt="trash"
-              />
-            </div>
-          </div>
-          <div className="flex h-40 p-5">
-            <input
-              checked={isCheckout}
-              id="checked-checkbox"
-              type="checkbox"
-              className="flex-none mr-2 self-start"
-              onClick={enableCheckout}
-            />
-            <div className="w-24 h-32 bg-[url('/images/sample4.jpg')] bg-cover flex-auto mr-3"></div>
-            <div className="flex w-64 h-full">
-              <div className="w-full flex flex-col justify-between">
-                <h1 className="text-sm text-[#BCA37F] font-bold italic">
-                  Zea - One Set Outfit
-                </h1>
-                <div
-                  className="flex text-[#113946] bg-[#F0ECE5] italic font-medium text-xs rounded-md px-2 py-2.5 items-center w-52 h-6 mb-3"
-                  onClick={enableDropDown}
-                >
-                  <span>Category</span>
-                  <img
-                    width="12"
-                    height="12"
-                    src="https://img.icons8.com/ios-filled/50/000000/sort-down.png"
-                    alt="sort-up"
-                    className="ml-auto sticky"
-                  />
-                </div>
-                <p className="text-sm">Rp. 320.000</p>
-                <span className="mt-auto">
-                  <button
-                    type="button"
-                    className="w-6 h-5 bg-[#F0ECE5] mr-3 text-xs"
-                  >
-                    -
-                  </button>
-                  <span className="font-bold text-sm">1</span>
-                  <button
-                    type="button"
-                    className="w-6 h-5 bg-[#F0ECE5] ml-3 text-xs"
-                  >
-                    +
-                  </button>
-                </span>
-              </div>
-            </div>
-            <div className="flex-auto w-5">
-              <img
-                width="16"
-                height="16"
-                src="https://img.icons8.com/pastel-glyph/64/trash.png"
-                alt="trash"
-              />
-            </div>
-          </div>
-          <div className="flex h-40 p-5">
-            <input
-              checked={isCheckout}
-              id="checked-checkbox"
-              type="checkbox"
-              className="flex-none mr-2 self-start"
-              onClick={enableCheckout}
-            />
-            <div className="w-24 h-32 bg-[url('/images/sample4.jpg')] bg-cover flex-auto mr-3"></div>
-            <div className="flex w-64 h-full">
-              <div className="w-full flex flex-col justify-between">
-                <h1 className="text-sm text-[#BCA37F] font-bold italic">
-                  BATAS
-                </h1>
-                <div
-                  className="flex text-[#113946] bg-[#F0ECE5] italic font-medium text-xs rounded-md px-2 py-2.5 items-center w-52 h-6 mb-3"
-                  onClick={enableDropDown}
-                >
-                  <span>Category</span>
-                  <img
-                    width="12"
-                    height="12"
-                    src="https://img.icons8.com/ios-filled/50/000000/sort-down.png"
-                    alt="sort-up"
-                    className="ml-auto sticky"
-                  />
-                </div>
-                <p className="text-sm">Rp. 320.000</p>
-                <span className="mt-auto">
-                  <button
-                    type="button"
-                    className="w-6 h-5 bg-[#F0ECE5] mr-3 text-xs"
-                  >
-                    -
-                  </button>
-                  <span className="font-bold text-sm">1</span>
-                  <button
-                    type="button"
-                    className="w-6 h-5 bg-[#F0ECE5] ml-3 text-xs"
-                  >
-                    +
-                  </button>
-                </span>
-              </div>
-            </div>
-            <div className="flex-auto w-5">
+            <div className="flex-auto w-5" onClick={openDelete}>
               <img
                 width="16"
                 height="16"
@@ -557,17 +364,53 @@ const CheckoutPage = () => {
               </button>
             </span>
           </div>
-            <button
-              type="button"
-              className="w-full h-3 bg-[#113946] p-5 text-white text-sm rounded-md font-medium leading-[0px] tracking-widest mt-8"
-            >
-              CONFIRM
-            </button>
+          <button
+            type="button"
+            className="w-full h-3 bg-[#113946] p-5 text-white text-sm rounded-md font-medium leading-[0px] tracking-widest mt-8"
+          >
+            CONFIRM
+          </button>
         </div>
       ) : (
-        <div className="hidden absolute w-screen h-0 bottom-0 transition-[height] ease-out duration-300 bg-red-300">
+        <div className="hidden absolute w-screen h-0 bottom-0 transition-[height] ease-out duration-300">
           TEST
         </div>
+      )}
+
+      {isDeleteOpen ? (
+        <div className="absolute w-[80%] top-[35%] left-[10%]">
+          <DeleteAlert onDeleteOK={handleDeleteOK} />
+        </div>
+      ) : (
+        ""
+      )}
+
+      {isDeleteOK ? (
+        <div className="absolute top-[8%] right-[5%]">
+          <div
+            id="toast-success"
+            className="flex items-center px-3 py-2 mb-4 text-black bg-[#F0ECE5] rounded-lg shadow"
+            role="alert"
+          >
+            <div className="inline-flex items-center justify-center flex-shrink-0 w-6 h-6 rounded-lg bg-amber-950 text-[#F0ECE5]">
+              <svg
+                className="w-3 h-3"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+              >
+                <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z" />
+              </svg>
+              <span className="sr-only">Check icon</span>
+            </div>
+            <div className="ms-2 text-xs font-normal">
+              Item deleted successfully
+            </div>
+          </div>
+        </div>
+      ) : (
+        ""
       )}
     </div>
   );
