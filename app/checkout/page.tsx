@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import DeleteAlert from "./delete-alert";
 
 const CheckoutPage = () => {
@@ -11,6 +11,20 @@ const CheckoutPage = () => {
   const [isDeleteOpen, setDeleteOpen] = useState(false);
 
   const [isDeleteOK, setDeleteOK] = useState(false);
+  const [count, setCount] = useState(2);
+
+  useEffect(() => {
+    if (isDeleteOK) {
+      const toastDisappear = setInterval(() => {
+        setCount((prevCount) => prevCount - 1);
+      }, 1000);
+      if (count === 0) {
+        clearInterval(toastDisappear);
+        setDeleteOK(false);
+      }
+      return () => clearInterval(toastDisappear);
+    }
+  }, [isDeleteOK, count]);
 
   const enableDropDown = () => {
     setDropDownOpen(!isDropDownOpen);
@@ -30,6 +44,7 @@ const CheckoutPage = () => {
 
   const handleDeleteOK = (val: boolean) => {
     if (val) {
+      setCount(2);
       setDeleteOK(val);
     }
     setDeleteOpen(false);
@@ -386,7 +401,13 @@ const CheckoutPage = () => {
       )}
 
       {isDeleteOK ? (
-        <div className="absolute top-[8%] right-[5%]">
+        <div
+          className={`absolute top-[8%] right-[5%] ${
+            count === 1
+              ? "transition-opacity duration-1000 ease-in opacity-0"
+              : ""
+          }`}
+        >
           <div
             id="toast-success"
             className="flex items-center px-3 py-2 mb-4 text-black bg-[#F0ECE5] rounded-lg shadow"
