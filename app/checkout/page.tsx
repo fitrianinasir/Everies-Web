@@ -1,366 +1,160 @@
-"use client";
-import React, { useEffect, useState } from "react";
-import DeleteAlert from "./delete-alert";
-import EditItem from "./edit-item";
+import React from "react";
+import SubPageNav from "../components/subpage-nav/subpage-nav";
+
 const CheckoutPage = () => {
-  const [isSelectAll, setSelectAll] = useState(false);
-  const [isCheckout, setCheckout] = useState(false);
-
-  const [isDropDownOpen, setDropDownOpen] = useState(false);
-
-  const [isDeleteOpen, setDeleteOpen] = useState(false);
-
-  const [isDeleteOK, setDeleteOK] = useState(false);
-  const [count, setCount] = useState(2);
-
-  useEffect(() => {
-    if (isDeleteOK) {
-      const toastDisappear = setInterval(() => {
-        setCount((prevCount) => prevCount - 1);
-      }, 1000);
-      if (count === 0) {
-        clearInterval(toastDisappear);
-        setDeleteOK(false);
-      }
-      return () => clearInterval(toastDisappear);
-    }
-  }, [isDeleteOK, count]);
-
-  const enableDropDown = () => {
-    setDropDownOpen(!isDropDownOpen);
-  };
-
-  const enableSelectAll = () => {
-    setSelectAll(!isSelectAll);
-  };
-
-  const enableCheckout = () => {
-    setCheckout(!isCheckout);
-  };
-
-  const openDelete = () => {
-    setDeleteOpen(!isDeleteOpen);
-  };
-
-  const handleDeleteOK = (val: boolean) => {
-    if (val) {
-      setCount(2);
-      setDeleteOK(val);
-    }
-    setDeleteOpen(false);
-  };
-
   return (
-    <div>
-      <div
-        className={`fixed w-screen h-full ${
-          isDropDownOpen ? "opacity-70 bg-black" : "hidden"
-        }`}
-        onClick={enableDropDown}
-      ></div>
-      <div
-        className={`fixed w-screen h-full ${
-          isDeleteOpen ? "opacity-70 bg-black" : "hidden"
-        }`}
-        onClick={openDelete}
-      ></div>
-      <div className="w-screen h-full">
-        {/* NAVBAR START */}
-        <div className="w-full h-28 flex text-[12px] items-end pl-5">
-          <img src="/icons/arrow.png" alt="" className="w-7 h-7 flex-none" />
-          <span className="ml-2 mb-1">My Shopping Bag</span>
-        </div>
-        {/* NAVBAR END */}
-        {/* NAVBAR LEV.2 START */}
-        <div className="grid grid-cols-2 px-7 w-full h-14 top-28 text-center text-xs">
-          <div
-            className="flex items-center justify-self-start"
-            onClick={enableSelectAll}
-          >
-            <input
-              checked={isSelectAll}
-              id="checked-checkbox"
-              type="checkbox"
+    <div className="w-screen h-screen flex flex-col justify-between px-7 ">
+      <div>
+        <SubPageNav title={"Checkout"} />
+        <div className="grid grid-cols-2 w-full h-14 top-28 text-center text-xs text-[#113946]">
+          <div className="flex items-center justify-self-start ">
+            <img
+              width="15"
+              height="15"
+              src="https://img.icons8.com/ios/50/113946/marker--v1.png"
+              alt="marker--v1"
             />
-            <label className="ms-2">Select All</label>
+            <p className="ml-1">Address Delivery</p>
           </div>
           <div className="self-center">
-            <p>Delete</p>
+            <p>Change</p>
           </div>
         </div>
-        {/* NAVBAR LEV.2 END */}
-        {/* INFO MODAL START */}
-        <div className="w-full h-32 bg-gradient-to-b from-[#646f99] to-white pt-6 px-6 ">
-          <div className="flex w-full h-full bg-white rounded-lg shadow-xl p-5 items-center">
-            <img
-              src="icons/icons8-delivery.gif"
-              alt=""
-              className="w-[30px] h-[30px] mr-3"
-            />
-            <p className="text-xs">
-              Anda akan mendapatkan pengantaran gratis dengan minimal belanja
-              Rp. 300.000 untuk pembelian apapun.
-            </p>
-          </div>
+        <div className="w-full  shadow-[0_0px_20px_0px_rgba(0,0,0,0.3)] px-3 py-4">
+          <p className="w-max px-2 py-1 bg-[#67729D] text-[10px] text-white italic font-medium rounded-3xl">
+            Fitriani Nasir (082347052535)
+          </p>
+          <p className="text-[11px] mt-2">
+            Kost Putri Ibu Retno, Tanah Abang, Kota Jakarta Pusat, DKI Jakarta
+            10240
+          </p>
         </div>
-        {/* INFO MODAL END */}
-        {/* PRODUCTS LIST START*/}
-        <div className="w-full grid grid-cols-1 gap-1 mt-2">
-          <div className="flex h-40 p-5">
-            <input
-              checked={isCheckout}
-              id="checked-checkbox"
-              type="checkbox"
-              className="flex-none mr-2 self-start"
-              onClick={enableCheckout}
-            />
-            <div className="w-24 h-32 bg-[url('/images/sample1.jpg')] bg-cover flex-auto mr-3"></div>
-            <div className="flex w-64 h-full">
-              <div className="w-full flex flex-col justify-between">
-                <h1 className="text-sm text-[#BCA37F] font-bold italic">
-                  Arabella Shirt - White
-                </h1>
-                <div
-                  className="flex text-[#113946] bg-[#F0ECE5] italic font-medium text-xs rounded-md px-2 py-2.5 items-center w-52 h-6 mb-3"
-                  onClick={enableDropDown}
-                >
-                  <span>Category</span>
-                  <img
-                    width="12"
-                    height="12"
-                    src="https://img.icons8.com/ios-filled/50/000000/sort-down.png"
-                    alt="sort-up"
-                    className="ml-auto sticky"
-                  />
+        <h1 className="my-5 text-sm text-bold text-[#113946] tracking-widest">
+          ORDER SUMMARY
+        </h1>
+        {/* PRODUCT LIST START */}
+        <div className="w-full grid grid-cols-1 gap-5 mt-2">
+          <div className="w-full">
+            <div className="flex">
+              <div className="w-16 h-24 bg-[url('/images/sample1.jpg')] bg-cover flex-auto mr-3"></div>
+              <div className="flex w-64 h-24">
+                <div className="w-full flex flex-col justify-between">
+                  <h1 className="text-sm text-[#BCA37F] font-bold italic">
+                    Arabella Shirt - White
+                  </h1>
+                  <h2 className="flex text-[#113946] italic font-medium text-xs my-2">
+                    Size: L - Varian: White
+                  </h2>
+                  <p className="text-xs mt-auto">Rp. 320.000</p>
                 </div>
-                <p className="text-sm">Rp. 320.000</p>
-                <span className="mt-auto">
-                  <button
-                    type="button"
-                    className="w-6 h-5 bg-[#F0ECE5] mr-3 text-xs"
-                  >
-                    -
-                  </button>
-                  <span className="font-bold text-sm">1</span>
-                  <button
-                    type="button"
-                    className="w-6 h-5 bg-[#F0ECE5] ml-3 text-xs"
-                  >
-                    +
-                  </button>
-                </span>
               </div>
-            </div>
-            <div className="flex-auto w-5" onClick={openDelete}>
-              <img
-                width="16"
-                height="16"
-                src="https://img.icons8.com/pastel-glyph/64/trash.png"
-                alt="trash"
-              />
+              <div className="flex-auto w-5">
+                <span className="text-xs">x1</span>
+              </div>
             </div>
           </div>
-          <div className="flex h-40 p-5">
-            <input
-              checked={isCheckout}
-              id="checked-checkbox"
-              type="checkbox"
-              className="flex-none mr-2 self-start"
-              onClick={enableCheckout}
-            />
-            <div className="w-24 h-32 bg-[url('/images/sample2.jpg')] bg-cover flex-auto mr-3"></div>
-            <div className="flex w-64 h-full">
-              <div className="w-full flex flex-col justify-between">
-                <h1 className="text-sm text-[#BCA37F] font-bold italic">
-                  Jasmine Shirt - Strip Blue White
-                </h1>
-                <div
-                  className="flex text-[#113946] bg-[#F0ECE5] italic font-medium text-xs rounded-md px-2 py-2.5 items-center w-52 h-6 mb-3"
-                  onClick={enableDropDown}
-                >
-                  <span>Category</span>
-                  <img
-                    width="12"
-                    height="12"
-                    src="https://img.icons8.com/ios-filled/50/000000/sort-down.png"
-                    alt="sort-up"
-                    className="ml-auto sticky"
-                  />
+          <div className="w-full">
+            <div className="flex">
+              <div className="w-16 h-24 bg-[url('/images/sample1.jpg')] bg-cover flex-auto mr-3"></div>
+              <div className="flex w-64 h-24">
+                <div className="w-full flex flex-col justify-between">
+                  <h1 className="text-sm text-[#BCA37F] font-bold italic">
+                    Arabella Shirt - White
+                  </h1>
+                  <h2 className="flex text-[#113946] italic font-medium text-xs my-2">
+                    Size: L - Varian: White
+                  </h2>
+                  <p className="text-xs mt-auto">Rp. 320.000</p>
                 </div>
-                <p className="text-sm">Rp. 320.000</p>
-                <span className="mt-auto">
-                  <button
-                    type="button"
-                    className="w-6 h-5 bg-[#F0ECE5] mr-3 text-xs"
-                  >
-                    -
-                  </button>
-                  <span className="font-bold text-sm">1</span>
-                  <button
-                    type="button"
-                    className="w-6 h-5 bg-[#F0ECE5] ml-3 text-xs"
-                  >
-                    +
-                  </button>
-                </span>
               </div>
-            </div>
-            <div className="flex-auto w-5" onClick={openDelete}>
-              <img
-                width="16"
-                height="16"
-                src="https://img.icons8.com/pastel-glyph/64/trash.png"
-                alt="trash"
-              />
+              <div className="flex-auto w-5">
+                <span className="text-xs">x1</span>
+              </div>
             </div>
           </div>
-          <div className="flex h-40 p-5">
-            <input
-              checked={isCheckout}
-              id="checked-checkbox"
-              type="checkbox"
-              className="flex-none mr-2 self-start"
-              onClick={enableCheckout}
-            />
-            <div className="w-24 h-32 bg-[url('/images/sample4.jpg')] bg-cover flex-auto mr-3"></div>
-            <div className="flex w-64 h-full">
-              <div className="w-full flex flex-col justify-between">
-                <h1 className="text-sm text-[#BCA37F] font-bold italic">
-                  Zea - One Set Outfit
-                </h1>
-                <div
-                  className="flex text-[#113946] bg-[#F0ECE5] italic font-medium text-xs rounded-md px-2 py-2.5 items-center w-52 h-6 mb-3"
-                  onClick={enableDropDown}
-                >
-                  <span>Category</span>
-                  <img
-                    width="12"
-                    height="12"
-                    src="https://img.icons8.com/ios-filled/50/000000/sort-down.png"
-                    alt="sort-up"
-                    className="ml-auto sticky"
-                  />
+          <div className="w-full">
+            <div className="flex">
+              <div className="w-16 h-24 bg-[url('/images/sample1.jpg')] bg-cover flex-auto mr-3"></div>
+              <div className="flex w-64 h-24">
+                <div className="w-full flex flex-col justify-between">
+                  <h1 className="text-sm text-[#BCA37F] font-bold italic">
+                    Arabella Shirt - White
+                  </h1>
+                  <h2 className="flex text-[#113946] italic font-medium text-xs my-2">
+                    Size: L - Varian: White
+                  </h2>
+                  <p className="text-xs mt-auto">Rp. 320.000</p>
                 </div>
-                <p className="text-sm">Rp. 320.000</p>
-                <span className="mt-auto">
-                  <button
-                    type="button"
-                    className="w-6 h-5 bg-[#F0ECE5] mr-3 text-xs"
-                  >
-                    -
-                  </button>
-                  <span className="font-bold text-sm">1</span>
-                  <button
-                    type="button"
-                    className="w-6 h-5 bg-[#F0ECE5] ml-3 text-xs"
-                  >
-                    +
-                  </button>
-                </span>
               </div>
-            </div>
-            <div className="flex-auto w-5" onClick={openDelete}>
-              <img
-                width="16"
-                height="16"
-                src="https://img.icons8.com/pastel-glyph/64/trash.png"
-                alt="trash"
-              />
+              <div className="flex-auto w-5">
+                <span className="text-xs">x1</span>
+              </div>
             </div>
           </div>
         </div>
-        {/* PRODUCTS LIST END*/}
-        {/* FOOTER START */}
-        <div className="w-full mt-5">
-          <div className="flex text-center justify-center w-full h-12 bg-[#ADC4CE] p-2">
-            <img
-              src="https://img.icons8.com/dotty/80/000000/sale-price-tag.png"
-              alt="sale-price-tag"
-              className="flex-row mr-1"
-            />
-            <p className="text-sm font-medium self-center">
-              Reedem your voucher or use loyalty points here
-            </p>
-          </div>
-          <div className="flex justify-between w-full p-5 bg-white">
-            <div>
-              <h6 className="text-sm">TOTAL</h6>
-              <span className="text-sm line-through text-gray-400 mr-2">
-                Rp. 1.040.000
-              </span>
-              <span className="text-sm">Rp. 890.000</span>
-              <div className="flex">
-                <img
-                  width="15"
-                  height="15"
-                  src="https://img.icons8.com/ios-filled/50/BCA37F/discount--v1.png"
-                  alt="discount--v1"
-                />
-                <span className="text-xs italic text-[#BCA37F] ml-1">
-                  You got disc 10%
-                </span>
-              </div>
-            </div>
-            <button
-              type="button"
-              className="bg-[#113946] text-sm font-bold text-white w-44 h-10 self-center rounded-md"
-            >
-              CHECKOUT
-            </button>
-          </div>
-        </div>
-        {/* FOOTER END */}
       </div>
-
-      {isDropDownOpen ? (
-        <div className="fixed w-screen h-3/6 bottom-0 p-5 transition-[height] ease-in duration-300 bg-white">
-          <EditItem />
-        </div>
-      ) : (
-        ""
-      )}
-
-      {isDeleteOpen ? (
-        <div className="absolute w-[80%] top-[35%] left-[10%]">
-          <DeleteAlert onDeleteOK={handleDeleteOK} />
-        </div>
-      ) : (
-        ""
-      )}
-
-      {isDeleteOK ? (
+      {/* PRODUCT LIST END */}
+      <div className="">
         <div
-          className={`absolute top-[8%] right-[5%] ${
-            count === 1
-              ? "transition-opacity duration-1000 ease-in opacity-0"
-              : ""
-          }`}
+          className="w-full flex justify-between my-8 px-3 py-2 text-sm border-[1px] 
+      border-[#BCA37F] rounded-lg text-center shadow-[0_15px_5px_0px_rgba(213,197,174,0.4)]"
         >
-          <div
-            id="toast-success"
-            className="flex items-center px-3 py-2 mb-4 text-black bg-[#F0ECE5] rounded-lg shadow"
-            role="alert"
-          >
-            <div className="inline-flex items-center justify-center flex-shrink-0 w-6 h-6 rounded-lg bg-amber-950 text-[#F0ECE5]">
-              <svg
-                className="w-3 h-3"
-                aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-              >
-                <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z" />
-              </svg>
-              <span className="sr-only">Check icon</span>
+          <img
+            width="18"
+            height="18"
+            src="https://img.icons8.com/ios-filled/50/BCA37F/discount--v1.png"
+            alt="discount--v1"
+          />
+          <p className="">Reedem your voucher or use loyalty points here</p>
+          <img
+            width="18"
+            height="18"
+            src="https://img.icons8.com/ios-filled/50/BCA37F/circled-right.png"
+            alt="circled-right"
+          />
+        </div>
+        <div className="w-screen -ml-7 mt-5 grid grid-cols-2 border-[0.1px] border-[#BCA37F] px-5 py-4 text-xs">
+          <div className="flex">
+            <h5 className="mr-1">PAYMENT METHOD</h5>
+            <img
+              width="10"
+              src="https://img.icons8.com/material-rounded/24/edit--v1.png"
+              alt="edit--v1"
+            />
+          </div>
+          <div className="flex justify-end">
+            <h5 className="font-bold mr-2">BCA Virtual Account</h5>
+            <img width={50} src="/asset/bca.png" alt="" />
+          </div>
+        </div>
+        <div className="w-full mt-5 text-[12px]">
+          <div className="grid grid-cols-1 gap-1">
+            <div className="flex justify-between">
+              <h6>Subtotal</h6>
+              <p>Rp. 1.040.000</p>
             </div>
-            <div className="ms-2 text-xs font-normal">
-              Item deleted successfully
+            <div className="flex justify-between">
+              <h6>Discount</h6>
+              <p>- Rp. 80.000</p>
+            </div>
+            <div className="flex justify-between">
+              <h6>Shipping Fee</h6>
+              <p>Rp. 0,-</p>
             </div>
           </div>
         </div>
-      ) : (
-        ""
-      )}
+        <div className="flex justify-between font-semibold text-white bg-[#BCA37F] px-5 py-3 mt-5 rounded-3xl">
+          <p className="tracking-[0.5rem]">TOTAL</p>
+          <p className="italic tracking-[0.1rem]">Rp. 890.000</p>
+        </div>
+
+        <button
+          type="button"
+          className="float-right text-white my-5 px-5 py-2 font-medium bg-[#113946] tracking-[0.1rem] rounded-md text-sm"
+        >
+          PLACE ORDER
+        </button>
+      </div>
     </div>
   );
 };
