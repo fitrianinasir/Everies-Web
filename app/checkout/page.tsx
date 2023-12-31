@@ -1,11 +1,12 @@
 import React from "react";
 import SubPageNav from "../components/subpage-nav/subpage-nav";
+import Link from "next/link";
 
 const CheckoutPage = () => {
   return (
     <div className="w-screen h-screen flex flex-col justify-between px-7 ">
       <div>
-        <SubPageNav title={"Checkout"} />
+        <SubPageNav title={"Checkout"} prev={"/"} />
         <div className="grid grid-cols-2 w-full h-14 top-28 text-center text-xs text-[#113946]">
           <div className="flex items-center justify-self-start ">
             <img
@@ -147,13 +148,14 @@ const CheckoutPage = () => {
           <p className="tracking-[0.5rem]">TOTAL</p>
           <p className="italic tracking-[0.1rem]">Rp. 890.000</p>
         </div>
-
-        <button
-          type="button"
-          className="float-right text-white my-5 px-5 py-2 font-medium bg-[#113946] tracking-[0.1rem] rounded-md text-sm"
-        >
-          PLACE ORDER
-        </button>
+        <Link href={"/payment"}>
+          <button
+            type="button"
+            className="float-right text-white my-5 px-5 py-2 font-medium bg-[#113946] tracking-[0.1rem] rounded-md text-sm"
+          >
+            PLACE ORDER
+          </button>
+        </Link>
       </div>
     </div>
   );

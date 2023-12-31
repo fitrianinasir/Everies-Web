@@ -29,6 +29,7 @@ const CategoryPage = () => {
         <div className="flex-1 w-52 md:w-3 grid grid-cols-3 text-[#113946] text-sm text-center">
           <h2 className="self-end">Categories</h2>
           <h2 className="self-end">Profile</h2>
+          <Link href={"/shopping-bag"}>
           <div className="pr-10 md:pr-20">
             <span className="w-4 rounded-full bg-red-600 text-xs top-12">
               4
@@ -40,6 +41,7 @@ const CategoryPage = () => {
               height={25}
             />
           </div>
+          </Link>
         </div>
       </div>
       <div className="w-3/4 h-7 mt-14 float-right bg-[#113946]"></div>

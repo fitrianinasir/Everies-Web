@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import SubPageNav from "../components/subpage-nav/subpage-nav";
 import DeleteAlert from "./delete-alert";
 import EditItem from "./edit-item";
+import Link from "next/link";
 
 const ShoppingBagPage = () => {
   const [isSelectAll, setSelectAll] = useState(false);
@@ -67,7 +68,9 @@ const ShoppingBagPage = () => {
         onClick={openDelete}
       ></div>
       <div className="w-screen h-full">
-        <SubPageNav title={"My Shopping Bag"} />
+        <div className="px-7">
+          <SubPageNav title={"My Shopping Bag"} prev={"/"} />
+        </div>
         {/* NAVBAR LEV.2 START */}
         <div className="grid grid-cols-2 px-7 w-full h-14 top-28 text-center text-xs">
           <div
@@ -298,12 +301,14 @@ const ShoppingBagPage = () => {
                 </span>
               </div>
             </div>
+            <Link href={'/checkout'}>
             <button
               type="button"
               className="bg-[#113946] text-sm font-bold text-white w-44 h-10 self-center rounded-md"
             >
               CHECKOUT
             </button>
+            </Link>
           </div>
         </div>
         {/* FOOTER END */}
