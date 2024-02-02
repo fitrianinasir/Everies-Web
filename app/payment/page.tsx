@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import SubPageNav from "../components/subpage-nav/subpage-nav";
 import PaymentExpired from "./payment-expired";
 import PaymentSuccess from "./payment-success";
+
 const PaymentPage = () => {
   const [hour, setHour] = useState<number>(1);
   const [minute, setMinute] = useState<number>(1);
